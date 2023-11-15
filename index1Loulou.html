@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HI</title>
+
+</head>
+<body>
+    <style>
+        img {
+            width: 50%; /* Adjust the width as a percentage of the original size */
+            height: auto; /* Maintain the aspect ratio */
+        }
+        #imageBaby {
+            position: absolute;
+            top: 150px; /* Adjust this value dynamically with JavaScript */
+            left:100px; /* Adjust this value dynamically with JavaScript */
+            width: 50%; /* Adjust the width as a percentage of the original size */
+            height: auto; /* Maintain the aspect ratio */
+        }
+
+        #image-container {
+            position: absolute;
+            top: 100px; /* Adjust this value dynamically with JavaScript */
+            left: 620px; /* Adjust this value dynamically with JavaScript */
+        }
+
+    </style>
+    <h1>Congrats for your purchase!</h1>
+    <h2>Your {{Number}} hoodies will arrive on the 4th January! And, because you are a Loulou, it's on me my Loulou!</h2>
+    <img src = https://images.nightcafe.studio/jobs/wYvAga2gkLrUva0yRkaI/wYvAga2gkLrUva0yRkaI--3--ep5ct_2x.jpg?tr=w-1600,c-at_max id ="imageBaby">
+    <div id="image-container">
+    </div>
+    <script>
+        let number = parseInt({{Number}});
+        console.log(number);
+        for (let i = 0; i < number; i++) {
+            let img = document.createElement('img');
+            img.src = "{{ url_for('static', filename='ImageLoulou.png') }}" ;
+            img.alt = 'Image ' + (i + 1);
+            img.className = 'image-item'; // Add a CSS class for styling
+            document.getElementById('image-container').appendChild(img);
+        }
+    </script>
+</body>
+</html>

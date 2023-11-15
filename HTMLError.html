@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Webpage Error</title>
+</head>
+<body>
+    <style>
+        img {
+            width: 50%; /* Adjust the width as a percentage of the original size */
+            height: auto; /* Maintain the aspect ratio */
+        }
+        #image-container {
+            position: absolute;
+            top: 100px; /* Adjust this value dynamically with JavaScript */
+            left: 600px; /* Adjust this value dynamically with JavaScript */
+        }
+    </style>
+    <h1>Generated Image and QR Code</h1>
+    <div>
+        <form id="getForm" action="/" method="post">
+            <h4>What do you want on the first line?</h4>
+            <input type="text" name="first_line" id="first_line">
+            <h4>What do you want on the second line?</h4>
+            <input type="text" name="second_line" id="second_line"><br><br>
+            <div class="control">
+                <h4><label>Would you like to append a QRCode or a Loulou?</label><h4/>
+                <label>
+                <input type="radio" name="option" value="option1" onclick="showInput()" checked> Option 1
+                </label>
+                <label>
+                <input type="radio" name="option" value="option2" onclick="showInput()"> Option 2
+                </label>
+            </div>
+            <div id="Prems" style="display:block;">
+            <h4><label>Please append a link to create a qrcode?</label></h4>
+            <input type="text" id="qrcode" name="qrcode">
+            </div><br>
+            <div id="inputContainer" style="display:none;">
+            <h4><label>Please append a link to create a qrcode?</label></h4>
+            <input type="text" id="qrcodedeux" name="qrcodedeux">
+            </div><br>
+            <div id ="Confirmation_Loulou" style="display:none;">
+            <h4><label>You chose a magnificent Loulou on your hoodie!</label></h4>
+            </div><br>
+            <input type="submit" value="Submit" id ="getForm"/><br><br>
+        </form>
+    </div>
+    <div>
+        <form id="postForm" action="/" method="post">
+            <h4> <FONT COLOR="#ff0000">How many hoodies do you want to order? </FONT></h4>
+            <input type="number" id="parameter" name="parameterXYZ"><br><br>
+            <input type="submit" value="Go to the basket and pay" id="postForm">
+        </form>
+    </div>
+    <img src="{{ url_for('static', filename='image.png') }}" alt="Generated Image" style="display: block; margin: auto;" id="image-container">
+    <script>
+        function showInput() {
+            var inputContainer = document.getElementById('inputContainer');
+            var radioOption1 = document.querySelector('input[name="option"][value="option1"]');
+            var radioOption2 = document.querySelector('input[name="option"][value="option2"]');
+
+            if (radioOption1.checked) {
+                inputContainer.style.display = 'block';
+                Confirmation_Loulou.style.display = 'none';
+                Prems.style.display = 'none';
+            } else {
+                inputContainer.style.display = 'none';
+                Confirmation_Loulou.style.display = 'block';
+                Prems.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
+

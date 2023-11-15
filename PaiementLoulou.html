@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paiement</title>
+</head>
+<body>
+  <h1>Please give us your information to proceed to the purchase</h1>
+  <form name="myForm" method="post" onsubmit="return validateForm()">
+    <p>
+      <label>
+      Surname:
+      <input type="text" name="fsurnameLoulou" id="fsurnameLoulou"/>
+      </label><br>
+      <label>
+      Name:
+      <input type="text" name="fname" id="fname" />
+      </label><br>
+    <p/>
+    <label>
+      Age:
+      <input type="number" name="age" id="age"/>
+      </label><br>
+      <label>
+      Mail Address:
+      <input type="email" name="mail" id="mail"/>
+      </label><br>
+      <label>
+        Origin:
+        <select name="origin" id="origin">
+          <option value="Choosecountry">Choose a country</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="China">China</option>
+          <option value="Thaïland">Thaïland</option>
+        </select>
+      </label><br>
+    <p/>
+    <div class="control">
+      <label>Method of payment:</label>
+      <input type="radio" name="peascode" id="oui" />
+      <label for ="oui">Credit Card</label>
+      <input type="radio" name="peascode" id="non" />
+      <label for ="non">Apple Pay</label>
+      <input type="radio" name="peascode" id="sisi" />
+      <label for ="sisi">Voucher</label><br>
+    </div>
+    <div>
+      <label>
+      Credit card:
+      <input type="text" name="credit_card" id="creditcard"/>
+      </label><br>
+      <label>
+    </div>
+    <p>
+      Password:
+      <input type="password" name="pw" id ="pw"/>
+      </label><br>
+      <input type="submit" value="Last click" id="submitBtn"/>
+    </p>
+    <p><img src = https://ih1.redbubble.net/image.5169692417.2177/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg></p>
+
+
+  </form>
+  <script>
+        function showInput() {
+            var inputContainer = document.getElementById('inputContainer');
+            var radioOption1 = document.querySelector('input[name="option"][value="option1"]');
+            var radioOption2 = document.querySelector('input[name="option"][value="option2"]');
+
+            if (radioOption1.checked) {
+                inputContainer.style.display = 'block';
+                Confirmation_Loulou.style.display = 'none';
+            } else {
+                inputContainer.style.display = 'none';
+                Confirmation_Loulou.style.display = 'block';
+            }
+        }
+        function validateForm() {
+            var inputs = [
+                { id: "fsurnameLoulou", name: "fsurnameLoulou" , nom: "Surname"},
+                { id: "fname", name: "fname" , nom: "Last name"},
+                { id: "age", name: "age" , nom: "Age"},
+                { id: "mail", name: "mail" , nom: "Email"},
+                { id: "creditcard", name: "credit_card" , nom: "Credit Card"},
+                { id: "pw", name: "pw" , nom: "Password"}
+            ];
+
+            var formData = {};
+
+            for (var i = 0; i < inputs.length; i++) {
+                var currentInput = inputs[i];
+                var inputElement = document.forms["myForm"][currentInput.id];
+                var requiredValue = inputElement.value;
+                if (requiredValue === "") {
+                    alert(currentInput.nom + " must be filled out");
+                    return false;
+                }
+                formData[currentInput.nom] = requiredValue;
+            }
+
+            var confirmationMessage = "Please confirm your inputs:\n\n";
+            for (var key in formData) {
+                confirmationMessage += key + ": " + formData[key] + "\n";
+            }
+
+            if (confirm(confirmationMessage + "\nClick OK to confirm or Cancel to make changes.")) {
+                document.forms["myForm"].action = "/";
+                return true;
+            } else {
+                return false;
+            }
+        }
+  </script>
+</body>
+</html>
